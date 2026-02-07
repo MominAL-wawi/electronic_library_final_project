@@ -1,0 +1,6 @@
+{% load library_extras %}
+<span
+  class="badge {% if book.is_available %}bg-success{% else %}bg-danger{% endif %}"
+>
+  {{ book|book_status }}
+</span>

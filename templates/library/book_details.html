@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5 pt-4">
+  <h2>{{ book.title }}</h2>
+
+  <p><strong>Author:</strong> {{ book.author.name }}</p>
+  <p><strong>Category:</strong> {{ book.category.name }}</p>
+  <p><strong>Year:</strong> {{ book.publication_year }}</p>
+  <p><strong>Pages:</strong> {{ book.pages }}</p>
+  <p><strong>Language:</strong> {{ book.language }}</p>
+
+  <hr />
+  <p>{{ book.description }}</p>
+</div>
+{% endblock %}

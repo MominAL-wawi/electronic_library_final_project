@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>My Profile</h2>
+
+<ul class="list-group">
+    <li class="list-group-item">
+        <strong>Username:</strong> {{ user.username }}
+    </li>
+    <li class="list-group-item">
+        <strong>Email:</strong> {{ user.email }}
+    </li>
+    <li class="list-group-item">
+        <strong>Phone:</strong> {{ profile.phone }}
+    </li>
+</ul>
+
+<br>
+<a href="{% url 'profile_edit' %}" class="btn btn-primary">
+    Edit Profile
+</a>
+
+{% endblock %}

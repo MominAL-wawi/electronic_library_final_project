@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% block content %}
+
+<h2 class="mb-4">Welcome to Electronic Library</h2>
+
+<h4>Recent Books</h4>
+<div class="row">
+  {% for book in recent_books %}
+  <div class="col-md-4 mb-3">
+    <div class="card p-3">
+      <h6>{{ book.title }}</h6>
+      <p>{{ book.author.name }}</p>
+      <a href="{% url 'book_details' book.id %}" class="btn btn-sm btn-primary">
+        Details
+      </a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<hr />
+
+<h4>Statistics</h4>
+<ul>
+  <li>Total Books: {{ stats.books_count }}</li>
+  <li>Total Authors: {{ stats.authors_count }}</li>
+  <li>Total Students: {{ stats.students_count }}</li>
+</ul>
+
+{% endblock %}

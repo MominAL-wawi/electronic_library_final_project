@@ -1,0 +1,55 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<div class="container mt-4">
+  <h2 class="mb-4">My Borrowed Books</h2>
+
+  {% if borrowings %}
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>Book</th>
+        <th>Borrowed At</th>
+        <th>Expected Return</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for b in borrowings %}
+      <tr>
+        <td>
+          <a href="{% url 'book_details' b.book.id %}"> {{ b.book.title }} </a>
+        </td>
+
+        <td>{{ b.borrowed_at|date:"Y-m-d H:i" }}</td>
+
+        <td>{{ b.expected_return_at|date:"Y-m-d H:i" }}</td>
+
+        <td>
+          {% if b.is_late %}
+          <span class="badge bg-danger">Late</span>
+          {% else %}
+          <span class="badge bg-success">On time</span>
+          {% endif %}
+        </td>
+
+        <td>
+          {% if not b.returned_at %}
+          <a href="{% url 'return_book' b.id %}" class="btn btn-sm btn-warning">
+            Return
+          </a>
+          {% else %}
+          <span class="text-muted">Returned</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% else %}
+  <div class="alert alert-info">You haven't borrowed any books yet.</div>
+  {% endif %}
+</div>
+
+{% endblock %}
